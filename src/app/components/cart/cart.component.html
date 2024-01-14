@@ -1,0 +1,10 @@
+<div class="cart">
+<div class="cart-shopping-content" *ngIf="(shoppingContent$ | async) as shoppingContent">
+  <app-cart-item *ngFor="let item of shoppingContent" [card]="item"></app-cart-item>
+</div>
+
+  <div *ngIf="!(shoppingContent$ | async)?.length" class="cart-no-content">
+    <span>Please choose some items from the store</span>
+  </div>
+
+</div>

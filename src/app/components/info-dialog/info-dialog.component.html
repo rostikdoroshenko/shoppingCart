@@ -1,0 +1,17 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+  <div mat-dialog-content>
+    <div class="description">{{ data.description }}</div>
+    <div class="comments" *ngIf="data.comments?.length">
+      <div class="comment" *ngFor="let comment of data.comments">
+        {{ comment }}
+      </div>
+    </div>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="addToCart()" class="add">Add To Cart</button>
+  </div>
+</div>
+

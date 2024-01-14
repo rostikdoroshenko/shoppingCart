@@ -1,0 +1,17 @@
+<div class="footer">
+  <div class="footer-pagination" *ngIf="!router.url.includes('/cart') && (page$ | async) as page">
+    <mat-icon *ngIf="page !== 1" (click)="changePage(page - 1)">arrow_back_ios</mat-icon>
+    <span
+      class="footer-pagination-page"
+      [ngClass]="{selected: pageNumber === page}"
+      *ngFor="let pageNumber of pages$ | async"
+      (click)="changePage(pageNumber)"
+    >
+      {{ pageNumber }}
+    </span>
+    <mat-icon
+      *ngIf="(pages$ | async)?.length && page !== (pages$ | async)?.length"
+      (click)="changePage(page + 1)">arrow_forward_ios
+    </mat-icon>
+  </div>
+</div>

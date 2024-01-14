@@ -1,0 +1,31 @@
+<div class="list">
+  <mat-progress-bar
+    class="list-progress"
+    *ngIf="isLoading$ | async; else container"
+    mode="indeterminate">
+  </mat-progress-bar>
+
+  <ng-template #container>
+
+    <div class="list-container">
+      <ng-container *ngIf="error$ | async as error">
+        <span class="list-container-error" >Something went wrong...</span>
+        <span class="list-container-error" >{{error.message}}</span>
+      </ng-container>
+
+      <div class="list-container-block" *ngIf="getContentForOnePage$ | async as content">
+        <div class="price-filters">
+          <app-price-filters></app-price-filters>
+        </div>
+        <div class="list-container-block-list">
+          <div class="list-container-block-list-item" *ngFor="let item of content">
+            <app-card [card]="item" (click)="openDialog(item)"></app-card>
+          </div>
+        </div>
+        <ng-container *ngIf="!content.length">
+          <span class="empty">No Items found...</span>
+        </ng-container>
+      </div>
+    </div>
+  </ng-template>
+</div>
